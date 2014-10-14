@@ -21,6 +21,22 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+echo
+echo "BUILDPACKDIR"
+ls -laR $BUILDPACK_DIR
+
+echo
+echo "BUILDDIR"
+ls -laR $BUILD_DIR
+
+echo
+echo "CACHEDIR"
+ls -laR $CACHE_DIR
+
+echo
+echo "ENVDIR"
+ls -laR $ENV_DIR
+
 # environment defaults:
 CL_IMPL=sbcl
 CL_WEBSERVER=hunchentoot
@@ -41,7 +57,7 @@ if [ -d $ENV_DIR ]; then
 fi
 
 CL_DIR="$CACHE_DIR/$CL_IMPL"
-echo "-----> compile params: $BUILD_DIR $CACHE_DIR"
+echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 
 if [ $RESET_CACHE ]; then
   echo "-----> flushing cache"
