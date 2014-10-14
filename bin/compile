@@ -19,6 +19,26 @@ function indent() {
 BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
+
+# environment defaults:
+CL_IMPL=sbcl
+CL_WEBSERVER=hunchentoot
+
+# read environment variables:
+if [ -d $ENV_DIR ]; then
+
+	# CL_IMPL:
+	if [ -f $ENV_DIR/CL_IMPL ]; then
+		CL_IMPL=$(cat $ENV_DIR/CL_IMPL)
+	fi
+
+	# CL_WEBSERVER:
+	if [ -f $ENV_DIR/CL_WEBSERVER ]; then
+		CL_WEBSERVER=$(cat $ENV_DIR/CL_WEBSERVER)
+	fi
+
+fi
 
 CL_DIR="$CACHE_DIR/$CL_IMPL"
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR"
