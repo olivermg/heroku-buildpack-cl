@@ -42,7 +42,7 @@ if [ -d $ENV_DIR ]; then
 fi
 
 #CL_DIR="$CACHE_DIR/$CL_IMPL"
-CL_DIR="$BUILD_DIR/bin/$CL_IMPL"
+CL_PATH="$BUILD_DIR/bin/$CL_IMPL"
 echo "-----> assuming to find lisp binary at $CL_PATH"
 
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
