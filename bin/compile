@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
+# bin/compile <build-dir> <cache-dir> <env-dir>
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -7,6 +7,7 @@ mktmpdir() {
   mkdir -p $dir
   echo $dir
 }
+
 function indent() {
   c='s/^/       /'
   case $(uname) in
@@ -20,6 +21,14 @@ BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
+
+echo
+echo "BUILD_DIR"
+ls -laR $BUILD_DIR
+
+echo
+echo "CACHE_DIR"
+ls -laR $CACHE_DIR
 
 # environment defaults:
 CL_IMPL=sbcl
